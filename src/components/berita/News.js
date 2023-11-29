@@ -11,7 +11,7 @@ const News = ({ location, date, thumbnail, description, alias }) => {
                 <Image
                     quality={50} placeholder="blur"
                     blurDataURL={thumbnail}
-                    src={thumbnail} fill className="rounded-t-lg" sizes="(min-width: 280px)" />
+                    src={thumbnail} fill className="rounded-t-lg" sizes="(min-width: 280px)" style={{ objectFit: "cover"}}/>
                 <Image src="/overlay.png" fill className="rounded-lg z-[2]" />
             </div>
             <div className="p-[1.5rem]">
