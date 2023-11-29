@@ -6,8 +6,8 @@ const News = ({ location, date, thumbnail, description, alias }) => {
     return (
         <div onClick={() => {
             router.push(process.env.NEXT_PUBLIC_BASE_URL_WIKA + "/news/" + alias)
-        }} className="rounded-xl shadow-md zoom flex flex-col items-center gap-x-[1.5rem] hover:cursor-pointer w-[17.5rem] h-[24.875rem]">
-            <div className="rounded-t-lg w-[17.5rem] h-[14.938rem] max-h-[14.938rem] relative">
+        }} className="rounded-xl shadow-md zoom flex flex-col items-center gap-x-[1.5rem] hover:cursor-pointer w-full h-[24.875rem]">
+            <div className="rounded-t-lg w-full h-[14.938rem] max-h-[14.938rem] relative">
                 <Image
                     quality={50} placeholder="blur"
                     blurDataURL={thumbnail}

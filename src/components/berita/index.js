@@ -3,7 +3,10 @@ import { useEffect, useState } from "react"
 import Pagination from "../common/Pagination"
 import News from "./News"
 import moment from "moment"
+import useResponsive from "@/utils/media-query"
+import cn from "classnames"
 const Berita = ({ data }) => {
+    const { isMobile } = useResponsive()
     const [news, setNews] = useState(data)
     const [page, setPage] = useState(1)
 
@@ -19,13 +22,13 @@ const Berita = ({ data }) => {
     const pagination = dataAsPagination()
     return (
         <div className="w-full">
-            <div className="flex flex-col pt-[5rem] px-[6.25rem]">
-                <div className="flex flex-row justify-between mb-[2.75rem] items-center">
-                    <div className="flex flex-row justify-between items-center w-full">
-                        <div className="w-text-display-2 text-sooty">Semua Berita WIKA GEDUNG</div>
+            <div className={cn("flex flex-col", isMobile ? "py-[2.5rem] px-[1rem]" : "pt-[5rem] px-[6.25rem]")}>
+                <div className={cn(isMobile ? "flex-col" : "flex flex-row justify-between mb-[2.75rem] items-center")}>
+                    <div className={cn(isMobile ? "flex flex-col" : "flex flex-row justify-between items-center w-full")}>
+                        <div className={cn(isMobile ? "w-text-body-2 font-semibold text-sooty text-center mb-[2rem]" : "w-text-display-2 text-sooty")}>Semua Berita WIKA GEDUNG</div>
                         {/* <div>Urutkan Berdasarkan</div>
                             <div>Cari</div> */}
-                        <div className="rounded-full bg-white border border-silver_spoon flex items-center px-[0.875rem] h-[2.75rem] gap-x-[0.875rem]">
+                        <div className={cn("rounded-full bg-white border border-silver_spoon flex items-center px-[0.875rem]  gap-x-[0.875rem]", isMobile ? "mb-[1rem] h-[2.5rem]" : "h-[2.75rem]")}>
                             <img src="/icons/ic_search_black.svg" />
                             <input
                                 type="text"
@@ -47,7 +50,7 @@ const Berita = ({ data }) => {
                     </div>
                 </div>
                 {/* news */}
-                <div className="grid grid-cols-4 gap-[2.5rem]">
+                <div className={cn(isMobile ? "flex flex-col gap-y-[1rem]" : "grid grid-cols-4 gap-[2.5rem]")}>
                     {pagination.length > 0 && pagination[page - 1].map((item, index) => {
                         return (
                             <News key={index}
@@ -60,7 +63,7 @@ const Berita = ({ data }) => {
                         )
                     })}
                 </div>
-                <div className="w-full flex justify-end mt-[3.125rem] mb-[5.938rem]">
+                <div className={cn("w-full flex mt-[3.125rem] ", isMobile ? "justify-center" : "justify-end mb-[5.938rem]")}>
                     <Pagination totalPages={pagination.length} currentPage={page} isMobile={false}
                         nextPage={() => {
                             let lastpage = pagination.length;
